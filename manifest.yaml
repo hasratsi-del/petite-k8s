@@ -1,0 +1,27 @@
+cluster:
+  name: test-cluster
+
+subnets:
+  - name: subnet-1
+    cidr: 172.20.0.0/24
+  - name: subnet-2
+    cidr: 172.21.0.0/24
+
+pods:
+  - name: web
+    image: nginx:latest
+    subnet: subnet-1
+    replicas: 2
+
+  - name: api
+    image: nginx:latest
+    subnet: subnet-2
+    replicas: 1
+
+firewall: []
+
+proxy:
+  image: nginx:latest
+  subnets:
+    - subnet-1
+    - subnet-2
